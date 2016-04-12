@@ -1,9 +1,9 @@
-import java.util.Arrays;
-
 import coordinated.TcpBlockingPingClient;
+import coordinated.TcpJioPingClient;
 import coordinated.TcpSelectNowPingClient;
 import coordinated.TcpSelectPingClient;
 import coordinated.TcpSpinPingClient;
+import java.util.Arrays;
 
 public class TcpPingMain {
     public static void main(String[] args) throws Exception {
@@ -27,6 +27,8 @@ public class TcpPingMain {
                     TcpSelectPingServer.main(restOfArgs);
                 } else if ("-selectNow".equals(type)) {
                     TcpSelectNowPingServer.main(restOfArgs);
+                } else if ("-jio".equals(type)) {
+                    TcpJioPingServer.main(restOfArgs);
                 } else {
                     // Meh
                     return;
@@ -41,6 +43,8 @@ public class TcpPingMain {
                     TcpSelectPingClient.main(restOfArgs);
                 } else if ("-selectNow".equals(type)) {
                     TcpSelectNowPingClient.main(restOfArgs);
+                } else if ("-jio".equals(type)) {
+                    TcpJioPingClient.main(restOfArgs);
                 } else {
                     // Meh
                     return;
@@ -65,10 +69,10 @@ public class TcpPingMain {
     public static void usage() {
         System.out.println("java-ping:");
         System.out.println("\t<no-args>\tthis usage");
-        System.out.println("\t-server [-spin|-block|-select|-selectNow] <interface> <port>\t");
+        System.out.println("\t-server [-spin|-block|-select|-selectNow|-jio] <interface> <port>\t");
         System.out.println("\t    defaults: interface = 0.0.0.0");
         System.out.println("\t              port = 12345");
-        System.out.println("\t-client [-spin|-block|-select|-selectNow] <host> <port> <message-size>\t");
+        System.out.println("\t-client [-spin|-block|-select|-selectNow|-jio] <host> <port> <message-size>\t");
         System.out.println("\t    defaults: host = localhost");
         System.out.println("\t              port = 12345");
         System.out.println("\t              message-size = 32");
